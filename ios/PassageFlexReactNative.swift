@@ -25,7 +25,7 @@ class PassageFlexReactNative: NSObject {
     
     @objc(authenticate:withResolver:withRejecter:)
     func authenticate(
-        transactionId: String,
+        transactionId: String?,
         resolve: @escaping RCTPromiseResolveBlock,
         reject: @escaping RCTPromiseRejectBlock
     ) -> Void {
