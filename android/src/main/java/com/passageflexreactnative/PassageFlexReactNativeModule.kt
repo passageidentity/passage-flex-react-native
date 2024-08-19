@@ -1,5 +1,6 @@
 package com.passageflexreactnative
 
+import android.app.Activity
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
@@ -12,8 +13,23 @@ import kotlinx.coroutines.launch
 class PassageFlexReactNativeModule(reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
 
+  private var appId: String = ""
+
+  private val passageFlex: PassageFlex by lazy {
+    PassageFlex(
+      appId = appId,
+      activity = currentActivity ?: Activity()
+    )
+  }
+
   override fun getName(): String {
     return NAME
+  }
+
+  @ReactMethod
+  fun initWithAppId(appId: String, promise: Promise) {
+    this.appId = appId
+    promise.resolve(null)
   }
 
   companion object {
@@ -28,9 +44,8 @@ class PassageFlexReactNativeModule(reactContext: ReactApplicationContext) :
           // promise.reject(e)
           return@launch
         }
-        val nonce = PassageFlex.Passkey.register(
+        val nonce = passageFlex.passkey.register(
           transactionId,
-          currentActivity!!
           // Add authenticator attachment option?
         )
         promise.resolve(nonce)
@@ -48,9 +63,8 @@ class PassageFlexReactNativeModule(reactContext: ReactApplicationContext) :
           // promise.reject(e)
           return@launch
         }
-        val nonce = PassageFlex.Passkey.authenticate(
+        val nonce = passageFlex.passkey.authenticate(
           transactionId,
-          currentActivity!!
         )
         promise.resolve(nonce)
       } catch (e: Exception) {
