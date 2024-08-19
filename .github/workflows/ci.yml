@@ -152,6 +152,14 @@ jobs:
         env:
           NO_FLIPPER: 1
 
+      - name: Run React Native Codegen
+        if: env.turbo_cache_hit != 1
+        run: |
+          yarn install
+          npx react-native-codegen
+          cd example/ios
+          pod install
+
       - name: Build example for iOS
         run: |
           yarn turbo run build:ios --cache-dir="${{ env.TURBO_CACHE_DIR }}"
