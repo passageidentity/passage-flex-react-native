@@ -17,6 +17,24 @@ const PassageFlexReactNative = NativeModules.PassageFlexReactNative
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return PassageFlexReactNative.multiply(a, b);
-}
+
+/**
+ * The PassageFlex class is used to easily add passkeys to your existing authentication system on Apple devices.
+ *
+ * @example
+ * ```
+ * import PassageFlex from '@passageidentity/passage-flex-react-native';
+ *
+ * const passageFlex = new PassageFlex('MY_APP_ID');
+ * ```
+ */
+class PassageFlex {
+
+  constructor(appId: String) {
+    if (!appId) return;
+    PassageFlexReactNative.initWithAppId(appId);
+  }
+
+};
+
+export default PassageFlex;

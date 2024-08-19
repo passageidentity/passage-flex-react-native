@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'passage-flex-react-native';
 
 export default function App() {
   const [result, setResult] = useState<number | undefined>();
 
   useEffect(() => {
-    multiply(3, 7).then(setResult);
+
   }, []);
 
   return (
