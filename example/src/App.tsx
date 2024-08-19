@@ -1,16 +1,9 @@
-import { useState, useEffect } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
-
-  useEffect(() => {
-
-  }, []);
-
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Result</Text>
     </View>
   );
 }
