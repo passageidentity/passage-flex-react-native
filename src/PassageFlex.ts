@@ -1,4 +1,4 @@
-import PassageFlexPasskey from './PassageFlexPasskey';
+import PassageFlexPasskey from './PassageFlexPasskey/PassageFlexPasskey';
 import { PassageFlexReactNative } from './PassageFlexReactNativeModule';
 
 /**

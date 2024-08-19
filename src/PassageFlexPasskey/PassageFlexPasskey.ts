@@ -1,4 +1,4 @@
-import { PassageFlexReactNative } from './PassageFlexReactNativeModule';
+import { PassageFlexReactNative } from '../PassageFlexReactNativeModule';
 
 /**
  * The base class for utilizing Apple's native passkey APIs and Passage Flex APIs together.
