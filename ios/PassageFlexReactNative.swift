@@ -31,10 +31,15 @@ class PassageFlexReactNative: NSObject {
                     let nonce = try await passageFlex.passkey.register(with: transactionId)
                     resolve(nonce)
                 } else {
-                    // TODO: throw error
+                    reject("PASSKEYS_NOT_SUPPORTED", "passkeys only supported on iOS 16 or newer", nil)
                 }
             } catch {
-                reject(error.localizedDescription, error.localizedDescription, error)
+                switch error {
+                case PassagePasskeyAuthorizationError.userCanceled:
+                    reject("USER_CANCELED", error.localizedDescription, error)
+                default:
+                    reject("PASSKEY_ERROR", error.localizedDescription, error)
+                }
             }
         }
     }
@@ -51,10 +56,15 @@ class PassageFlexReactNative: NSObject {
                     let nonce = try await passageFlex.passkey.authenticate(with: transactionId)
                     resolve(nonce)
                 } else {
-                    // TODO: throw error
+                    reject("PASSKEYS_NOT_SUPPORTED", "passkeys only supported on iOS 16 or newer", nil)
                 }
             } catch {
-                reject(error.localizedDescription, error.localizedDescription, error)
+                switch error {
+                case PassagePasskeyAuthorizationError.userCanceled:
+                    reject("USER_CANCELED", error.localizedDescription, error)
+                default:
+                    reject("PASSKEY_ERROR", error.localizedDescription, error)
+                }
             }
         }
     }
