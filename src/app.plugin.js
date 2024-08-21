@@ -27,11 +27,14 @@ function addPodfileDependency(contents) {
 }
 
 // iOS: Add PassageFlex CocoaPod
-function withIosPodfile(config) {
-  return withDangerousMod(config, [
+function withIosPodfile(configuration) {
+  return withDangerousMod(configuration, [
     'ios',
     (config) => {
-      const podfilePath = path.join(config.modRequest.platformProjectRoot, 'Podfile');
+      const podfilePath = path.join(
+        config.modRequest.platformProjectRoot,
+        'Podfile'
+      );
       let podfileContents = fs.readFileSync(podfilePath, 'utf-8');
 
       podfileContents = addPodfileDependency(podfileContents);
@@ -44,12 +47,12 @@ function withIosPodfile(config) {
 }
 
 // iOS: Add Associated Domains Capability
-function withIosAssociatedDomain(config) {
+function withIosAssociatedDomain(configuration) {
   const associatedDomain = process.env.ASSOCIATED_DOMAIN;
   if (!associatedDomain) {
     throw new Error('ASSOCIATED_DOMAIN environment variable is not set');
   }
-  return withEntitlementsPlist(config, (config) => {
+  return withEntitlementsPlist(configuration, (config) => {
     config.modResults['com.apple.developer.associated-domains'] = [
       `webcredentials:${associatedDomain}`,
     ];
@@ -58,11 +61,15 @@ function withIosAssociatedDomain(config) {
 }
 
 // Android: Add PassageFlex Gradle Dependency
-function withAndroidGradleDependency(config) {
-  return withDangerousMod(config, [
+function withAndroidGradleDependency(configuration) {
+  return withDangerousMod(configuration, [
     'android',
     (config) => {
-      const buildGradlePath = path.join(config.modRequest.platformProjectRoot, 'app', 'build.gradle');
+      const buildGradlePath = path.join(
+        config.modRequest.platformProjectRoot,
+        'app',
+        'build.gradle'
+      );
       let buildGradleContents = fs.readFileSync(buildGradlePath, 'utf-8');
 
       const passageDependency = `implementation 'id.passage.android:passageflex:0.2.0'`;
@@ -70,7 +77,10 @@ function withAndroidGradleDependency(config) {
       if (!buildGradleContents.includes(passageDependency)) {
         const dependenciesIndex = buildGradleContents.indexOf('dependencies {');
         if (dependenciesIndex !== -1) {
-          const nextLineIndex = buildGradleContents.indexOf('\n', dependenciesIndex);
+          const nextLineIndex = buildGradleContents.indexOf(
+            '\n',
+            dependenciesIndex
+          );
           buildGradleContents =
             buildGradleContents.slice(0, nextLineIndex + 1) +
             `    ${passageDependency}\n` +
@@ -86,22 +96,22 @@ function withAndroidGradleDependency(config) {
 }
 
 // Android: Modify AndroidManifest.xml for asset_statements
-function withAndroidAssociatedDomain(config) {
+function withAndroidAssociatedDomain(configuration) {
   const associatedDomain = process.env.ASSOCIATED_DOMAIN;
   if (!associatedDomain) {
     throw new Error('ASSOCIATED_DOMAIN environment variable is not set');
   }
 
   // Modify AndroidManifest.xml
-  config = withAndroidManifest(config, async (config) => {
+  configuration = withAndroidManifest(configuration, async (config) => {
     const application = config.modResults.manifest.application[0];
-    
+
     if (!application.hasOwnProperty('meta-data')) {
       application['meta-data'] = [];
     }
 
-    const metaDataExists = application['meta-data'].some(metaData => 
-      metaData.$['android:name'] === 'asset_statements'
+    const metaDataExists = application['meta-data'].some(
+      (metaData) => metaData.$['android:name'] === 'asset_statements'
     );
 
     if (!metaDataExists) {
@@ -117,7 +127,7 @@ function withAndroidAssociatedDomain(config) {
   });
 
   // Modify strings.xml
-  config = withDangerousMod(config, [
+  configuration = withDangerousMod(configuration, [
     'android',
     (config) => {
       const stringsXmlPath = path.join(
@@ -151,20 +161,19 @@ function withAndroidAssociatedDomain(config) {
     },
   ]);
 
-  return config;
+  return configuration;
 }
 
 module.exports = withAndroidAssociatedDomain;
 
-
-// Combine both plugins into a single config plugin
-const withPassage = (config) => {
-  return withPlugins(config, [
-    withIosPodfile,
-    withIosAssociatedDomain,
+// Combine all plugins into a single config plugin
+const withPassage = (configuration) => {
+  return withPlugins(configuration, [
+    // withIosPodfile,
+    // withIosAssociatedDomain,
     withAndroidGradleDependency,
     withAndroidAssociatedDomain,
   ]);
 };
 
-module.exports = withPassage;
+export default withPassage;
