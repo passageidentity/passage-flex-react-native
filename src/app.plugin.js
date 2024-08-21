@@ -169,8 +169,8 @@ module.exports = withAndroidAssociatedDomain;
 // Combine all plugins into a single config plugin
 const withPassage = (configuration) => {
   return withPlugins(configuration, [
-    // withIosPodfile,
-    // withIosAssociatedDomain,
+    withIosPodfile,
+    withIosAssociatedDomain,
     withAndroidGradleDependency,
     withAndroidAssociatedDomain,
   ]);

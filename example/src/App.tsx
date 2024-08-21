@@ -1,5 +1,5 @@
 import { PassageFlex } from 'passage-flex-react-native';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 
 const passageFlex = new PassageFlex('eIGvJLBjM9qIWhJcmjQeJdEq');
