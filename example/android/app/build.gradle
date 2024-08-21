@@ -79,7 +79,7 @@ android {
 
     namespace "passageflexreactnative.example"
     defaultConfig {
-        applicationId "passageflexreactnative.example"
+        applicationId "id.passage.example_android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

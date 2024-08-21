@@ -1,5 +1,5 @@
-import PassageFlexPasskey from './PassageFlexPasskey/PassageFlexPasskey';
-import { PassageFlexReactNative } from './PassageFlexReactNativeModule';
+import { PassageFlexPasskey } from '../PassageFlexPasskey';
+import { PassageFlexReactNative } from './';
 
 /**
  * The PassageFlex class is used to easily add passkeys to your existing authentication system on Apple devices.
@@ -11,7 +11,7 @@ import { PassageFlexReactNative } from './PassageFlexReactNativeModule';
  * const passageFlex = new PassageFlex('MY_APP_ID');
  * ```
  */
-class PassageFlex {
+export class PassageFlex {
   passkey: PassageFlexPasskey;
   appId: string;
 
@@ -21,5 +21,3 @@ class PassageFlex {
     PassageFlexReactNative.initWithAppId(appId);
   }
 }
-
-export default PassageFlex;

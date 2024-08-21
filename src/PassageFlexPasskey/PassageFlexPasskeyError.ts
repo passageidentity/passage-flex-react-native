@@ -1,6 +1,17 @@
+export enum PasskeyErrorCode {
+  PasskeyError = 'PASSKEY_ERROR',
+  PasskeysNotSupported = 'PASSKEYS_NOT_SUPPORTED',
+  UserCanceled = 'USER_CANCELED',
+}
+
 export class PassageFlexPasskeyError extends Error {
-  constructor(message: string) {
+  constructor(
+    public code: PasskeyErrorCode,
+    message?: string
+  ) {
     super(message);
-    this.name = 'PassageFlexPasskeyError';
+    // This line is necessary to preserve the correct instanceof checks
+    Object.setPrototypeOf(this, new.target.prototype);
+    this.name = code;
   }
 }

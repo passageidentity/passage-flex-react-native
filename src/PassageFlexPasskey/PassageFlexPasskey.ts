@@ -1,9 +1,11 @@
-import { PassageFlexReactNative } from '../PassageFlexReactNativeModule';
+import { Platform } from 'react-native';
+import { PassageFlexReactNative } from '../PassageFlex';
+import { PassageFlexPasskeyError, PasskeyErrorCode } from './';
 
 /**
  * The base class for utilizing Apple's native passkey APIs and Passage Flex APIs together.
  */
-class PassageFlexPasskey {
+export class PassageFlexPasskey {
   appId: string;
 
   constructor(appId: string) {
@@ -14,7 +16,15 @@ class PassageFlexPasskey {
    * Checks if the user's device supports passkeys.
    */
   isSupported = (): boolean => {
-    return true;
+    if (Platform.OS === 'ios') {
+      const iosVersion = parseFloat(Platform.Version as string);
+      return iosVersion >= 16;
+    } else if (Platform.OS === 'android') {
+      const androidVersion = Platform.Version as number;
+      return androidVersion >= 28;
+    } else {
+      return false; // Unsupported platform
+    }
   };
 
   /**
@@ -32,14 +42,15 @@ class PassageFlexPasskey {
    * - Returns: A single-use "nonce" from Passage server to be exchanged for an authentication token on
    * your app's server.
    *
-   * - Throws: `PassagePasskeyFlexError` when passkey authorization fails.
+   * - Throws: `PassageFlexPasskeyError` when passkey authorization fails.
    */
   register = async (transactionId: string): Promise<string> => {
+    this.checkForPasskeySupport();
     try {
       const nonce = await PassageFlexReactNative.register(transactionId);
       return nonce;
     } catch (error: any) {
-      throw new Error();
+      throw new PassageFlexPasskeyError(error.code, error.message);
     }
   };
 
@@ -55,16 +66,26 @@ class PassageFlexPasskey {
    * - Returns: A single-use "nonce" from Passage server to be exchanged for an authentication token on
    * your app's server.
    *
-   * - Throws: `PassagePasskeyFlexError` when passkey authorization fails.
+   * - Throws: `PassageFlexPasskeyError` when passkey authorization fails.
    */
-  authenticate = async (transactionId: string | null) => {
+  authenticate = async (
+    transactionId: string | null = null
+  ): Promise<string> => {
+    this.checkForPasskeySupport();
     try {
       const nonce = await PassageFlexReactNative.authenticate(transactionId);
       return nonce;
     } catch (error: any) {
-      throw new Error();
+      throw new PassageFlexPasskeyError(error.code, error.message);
+    }
+  };
+
+  private checkForPasskeySupport = () => {
+    if (!this.isSupported) {
+      throw new PassageFlexPasskeyError(
+        PasskeyErrorCode.PasskeysNotSupported,
+        'device does not support passkeys'
+      );
     }
   };
 }
-
-export default PassageFlexPasskey;

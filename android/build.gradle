@@ -49,7 +49,7 @@ def supportsNamespace() {
 
 android {
   if (supportsNamespace()) {
-    namespace "com.passageflexreactnative"
+    namespace "id.passage.passageflexreactnative"
 
     sourceSets {
       main {
