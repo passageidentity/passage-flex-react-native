@@ -57,7 +57,7 @@ class PassageFlexPasskey {
    *
    * - Throws: `PassagePasskeyFlexError` when passkey authorization fails.
    */
-  authenticate = async (transactionId: string | null) => {
+  authenticate = async (transactionId: string | null = null) => {
     try {
       const nonce = await PassageFlexReactNative.authenticate(transactionId);
       return nonce;

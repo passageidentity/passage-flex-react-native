@@ -1,1 +1,3 @@
-export * from './PassageFlex';
+export { PassageFlex } from './PassageFlex';
+
+// module.exports.withPassage = require('./withPassage');

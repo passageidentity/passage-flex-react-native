@@ -11,7 +11,7 @@ import { PassageFlexReactNative } from './PassageFlexReactNativeModule';
  * const passageFlex = new PassageFlex('MY_APP_ID');
  * ```
  */
-class PassageFlex {
+export class PassageFlex {
   passkey: PassageFlexPasskey;
   appId: string;
 
@@ -21,5 +21,3 @@ class PassageFlex {
     PassageFlexReactNative.initWithAppId(appId);
   }
 }
-
-export default PassageFlex;
