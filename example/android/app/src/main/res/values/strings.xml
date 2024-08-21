@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">PassageFlexReactNativeExample</string>
+  <string name="passage_auth_origin">try.passage.id</string>
+  <string name="asset_statements">
+      [{
+        \\"include\\": \\"https://@string/passage_auth_origin/.well-known/assetlinks.json\\"
+      }]
+    </string>
 </resources>
