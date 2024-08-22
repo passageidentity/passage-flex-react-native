@@ -13,8 +13,8 @@ For full documentation, including setting up a backend SDK, visit the [Passkey 
 1. Create a Passkey Flex app in the Passage Console at https://console.passage.id 
 2. Add an Android and/or iOS app in the Native Apps section
 3. When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown below:
+![Passage Native Apps screenshot](https://docs-v2.passage.id/_next/image?url=%2Fimages%2Fdownload-config.png&w=3840&q=75)
 
-https://docs-v2.passage.id/_next/image?url=%2Fimages%2Fdownload-config.png&w=3840&q=75
 
 ### Hosted associated domains files
 
@@ -29,7 +29,7 @@ Apple requires an `apple-app-site-association` file configured and hosted (learn
 Install this package using npm:
 
 ```
-npm i --save @passage/passage-flex-react-native
+npm i --save @passageidentity/passage-flex-react-native
 ```
 
 ## App configuration
