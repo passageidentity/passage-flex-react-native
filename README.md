@@ -111,7 +111,6 @@ You can check if a user’s device supports passkeys by calling `passageFlex.pas
 const deviceSupportsPasskeys = passageFlex.passkey.isSupported();
 ```
 
-High level steps
 
 ## Contributing
 
