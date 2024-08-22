@@ -89,7 +89,7 @@ const onPressRegister = async () => {
 
 ### passageFlex.passkey.authenticate
 
-To log in a user using a passkey, use the `passageFlex.passkey.authenticaete` method.
+To log in a user using a passkey, use the `passageFlex.passkey.authenticate` method.
 
 Example:
 
