@@ -6,6 +6,7 @@ Use the `passage-flex-react-native` SDK to implement Passkey Flex in your React 
 
 For full documentation, including setting up a backend SDK, visit the [Passkey Flex documentation here](https://docs-v2.passage.id/flex).
 
+
 ## Prerequisites
 
 ### A Passkey Flex app
@@ -32,20 +33,20 @@ Install this package using npm:
 npm i --save @passageidentity/passage-flex-react-native
 ```
 
+
 ## App configuration
 
 ### Expo
 
-- Add plugin in app.json
+- Add plugin in app.json:
     
     ```json
     "plugins": [
-          "@passageidentity/passage-flex-react-native",
-          // ...
+          "@passageidentity/passage-flex-react-native"
     ]
     ```
     
-- Add `ASSOCIATED_DOMAIN` value to `.env` (in your app root)
+- Add `ASSOCIATED_DOMAIN` value to your app's `.env` file:
     
     ```
     ASSOCIATED_DOMAIN=example.com
@@ -56,6 +57,7 @@ npm i --save @passageidentity/passage-flex-react-native
 ### Bare React Native
 
 See our [Passkey Complete documentation](https://docs.passage.id/mobile/cross-platform/cross-platform-passkey-configuration) for setting up a React Native app for passkeys and Passage.
+
 
 ## Usage
 
@@ -79,9 +81,9 @@ Example:
 
 ```tsx
 const onPressRegister = async () => {
-	// 1. Get transaction id string from your backend.
-	const transactionId = await getRegisterTransactionId("newuser@email.com");
-	// 2. Prompt user to create a passkey and get a Passage nonce value on success.
+  // 1. Get transaction id string from your backend.
+  const transactionId = await getRegisterTransactionId("newuser@email.com");
+  // 2. Prompt user to create a passkey and get a Passage nonce value on success.
   const nonce = await passageFlex.passkey.register(transactionId);
   // 3. You can send this nonce to your backend to complete user registration.
 };
@@ -95,9 +97,9 @@ Example:
 
 ```tsx
 const onPressLogIn = async () => {
-	// 1. Get transaction id string from your backend.
-	const transactionId = await getLogInTransactionId("existinguser@email.com");
-	// 2. Prompt user to create a passkey and get a Passage nonce value on success.
+  // 1. Get transaction id string from your backend.
+  const transactionId = await getLogInTransactionId("existinguser@email.com");
+  // 2. Prompt user to create a passkey and get a Passage nonce value on success.
   const nonce = await passageFlex.passkey.authenticate(transactionId);
   // 3. You can send this nonce to your backend to complete user authentication.
 };
@@ -120,6 +122,3 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 MIT
 
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
