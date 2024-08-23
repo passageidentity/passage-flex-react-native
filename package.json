@@ -1,6 +1,6 @@
 {
   "name": "@passageidentity/passage-flex-react-native",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Native passkey authentication for your React Native and Expo apps.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -80,7 +80,7 @@
     "react": "18.3.1",
     "react-native": "0.75.1",
     "react-native-builder-bob": "^0.29.1",
-    "release-it": "^15.0.0",
+    "release-it": "^17.6.0",
     "turbo": "^1.10.7",
     "typescript": "^5.2.2"
   },
