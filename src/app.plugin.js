@@ -44,12 +44,18 @@ function withIosPodfile(configuration) {
 function withIosAssociatedDomain(configuration) {
   const associatedDomain = process.env.ASSOCIATED_DOMAIN;
   if (!associatedDomain) {
-    throw new Error('ASSOCIATED_DOMAIN environment variable is not set');
+    return configuration;
   }
   return withEntitlementsPlist(configuration, (config) => {
-    config.modResults['com.apple.developer.associated-domains'] = [
-      `webcredentials:${associatedDomain}`,
-    ];
+    const key = 'com.apple.developer.associated-domains';
+    const webCredEntitlement = `webcredentials:${associatedDomain}`;
+    // Get existing associated domains if they exist
+    let domains = config.modResults[key] || [];
+    // Add the new domain only if it's not already present
+    if (!domains.includes(webCredEntitlement)) {
+      domains.push(webCredEntitlement);
+    }
+    config.modResults[key] = domains;
     return config;
   });
 }
@@ -88,7 +94,7 @@ function withAndroidGradleDependency(configuration) {
 function withAndroidAssociatedDomain(configuration) {
   const associatedDomain = process.env.ASSOCIATED_DOMAIN;
   if (!associatedDomain) {
-    throw new Error('ASSOCIATED_DOMAIN environment variable is not set');
+    return configuration;
   }
 
   // Modify AndroidManifest.xml
@@ -124,7 +130,7 @@ function withAndroidAssociatedDomain(configuration) {
       }
       let stringsXmlContent = fs.readFileSync(stringsXmlPath, 'utf-8');
       // Check if the string already exists
-      if (!stringsXmlContent.includes('<string name="passage_auth_origin">')) {
+      if (!stringsXmlContent.includes('<string name="asset_statements">')) {
         const newStrings = `<string name="passage_auth_origin">${associatedDomain}</string>
         <string name="asset_statements">[{"include": "https://@string/passage_auth_origin/.well-known/assetlinks.json"}]</string>`;
         // Insert the new strings before the closing </resources> tag
