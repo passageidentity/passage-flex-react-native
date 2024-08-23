@@ -1,8 +1,8 @@
 # passage-flex-react-native
 
-Passkey Flex provides passkey authentication support to existing authentication systems. It handles the hard parts of incorporating native passkey APIs and provides a simple, clean solution to take your authentication to the next level.
+Passkey Flex provides passkey support for existing authentication systems. It abstracts the complexities of native passkey APIs and provides a simple, clean solution to take your authentication to the next level.
 
-Use the `passage-flex-react-native` SDK to implement Passkey Flex in your React Native app to use passkeys to register and authenticate, or as added security on secure user actions.
+Use the `passage-flex-react-native` SDK in your React Native app to implement passkey registration, authentication, or additinal step-up or multifactor authentication (MFA).
 
 For full documentation, including setting up a backend SDK, visit the [Passkey Flex documentation here](https://docs-v2.passage.id/flex).
 
