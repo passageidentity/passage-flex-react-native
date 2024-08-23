@@ -1,5 +1,7 @@
 # passage-flex-react-native
 
+<img src="https://storage.googleapis.com/passage-docs/passage-logo-gradient.svg" alt="Passage logo" style="width:250px;"/>
+
 [![npm version](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native.svg)](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native)
 
 Passkey Flex provides passkey support for existing authentication systems. It abstracts the complexities of native passkey APIs and provides a simple, clean solution to take your authentication to the next level.
