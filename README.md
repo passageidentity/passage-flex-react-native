@@ -77,6 +77,11 @@ const passageFlex = new PassageFlex('YOUR_APP_ID');
 
 To register a new user passkey, use the `passageFlex.passkey.register` method.
 
+This is a three step process:
+1. Your app should POST a user identifier (like an email) to your backend, which should request a transaction id from the Passage server to return to your app.
+2. Your app should then call `passageFlex.passkey.register(transactionId)` to prompt your user to create a passkey. On success, the `register` method will return a nonce.
+3. Lastly, your app should send this nonce to your backend to verify the user has been registered successfully. At this point, your backend could return an access token.
+
 Example:
 
 ```tsx
@@ -86,12 +91,19 @@ const onPressRegister = async () => {
   // 2. Prompt user to create a passkey and get a Passage nonce value on success.
   const nonce = await passageFlex.passkey.register(transactionId);
   // 3. You can send this nonce to your backend to complete user registration.
+  const accessToken = await getAccessToken(nonce);
 };
 ```
 
 ### passageFlex.passkey.authenticate
 
 To log in a user using a passkey, use the `passageFlex.passkey.authenticate` method.
+
+This is a three step process:
+1. Your app should POST a user identifier (like an email) to your backend, which should request a transaction id from the Passage server to return to your app.
+2. Your app should then call `passageFlex.passkey.authenticate(transactionId)` to prompt your user to log in with a passkey. On success, the `authenticate` method will return a nonce.
+3. Lastly, your app should send this nonce to your backend to verify the user has been authenticated successfully. At this point, your backend could return an access token.
+
 
 Example:
 
@@ -102,6 +114,7 @@ const onPressLogIn = async () => {
   // 2. Prompt user to create a passkey and get a Passage nonce value on success.
   const nonce = await passageFlex.passkey.authenticate(transactionId);
   // 3. You can send this nonce to your backend to complete user authentication.
+  const accessToken = await getAccessToken(nonce);
 };
 ```
 
