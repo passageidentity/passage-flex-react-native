@@ -184,5 +184,9 @@
     "type": "module-legacy",
     "languages": "kotlin-swift",
     "version": "0.40.0"
+  },
+  "overrides": {
+    "ip": "2.0.1",
+    "semver": "7.5.2"
   }
 }
