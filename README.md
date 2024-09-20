@@ -1,6 +1,5 @@
+![Passage Swift](https://storage.googleapis.com/passage-docs/passage-github-banner.png)
 # passage-flex-react-native
-
-<img src="https://storage.googleapis.com/passage-docs/passage-logo-gradient.svg" alt="Passage logo" style="width:250px;"/>
 
 [![npm version](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native.svg)](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native)
 
@@ -18,7 +17,7 @@ For full documentation, including setting up a backend SDK, visit the [Passkey 
 1. Create a Passkey Flex app in the Passage Console at https://console.passage.id 
 2. Add an Android and/or iOS app in the Native Apps section
 3. When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown below:
-![Passage Native Apps screenshot](https://docs-v2.passage.id/_next/image?url=%2Fimages%2Fdownload-config.png&w=3840&q=75)
+![Passage Native Apps screenshot](https://docs.passage.id/_next/image?url=%2Fimages%2Fv1-doc-images%2Fios-download-config-file.png&w=3840&q=75)
 
 
 ### Hosted associated domains files
@@ -60,7 +59,7 @@ npm i --save @passageidentity/passage-flex-react-native
 
 ### Bare React Native
 
-See our [Passkey Complete documentation](https://docs.passage.id/mobile/cross-platform/cross-platform-passkey-configuration) for setting up a React Native app for passkeys and Passage.
+See our [Passkey Complete documentation](https://docs.passage.id/complete/cross-platform-passkey-configuration/cross-platform-ios-configuration) for setting up a React Native app for passkeys and Passage.
 
 
 ## Usage
@@ -135,7 +134,16 @@ const deviceSupportsPasskeys = passageFlex.passkey.isSupported();
 
 See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
 
-## License
+---
+<br />
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: light)" srcset="https://storage.googleapis.com/passage-docs/logo-small-light.pngg" width="150">
+    <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/passage-docs/logo-small-dark.png" width="150">
+    <img alt="Passage Logo" src="https://storage.googleapis.com/passage-docs/logo-small-light.png" width="150">
+  </picture>
+</p>
 
-MIT
+<p align="center">Give customers the passwordless future they deserve. To learn more check out <a href="https://passage.1password.com">passage.1password.com</a></p>
 
+<p align="center">This project is licensed under the MIT license. See the <a href="./LICENSE"> LICENSE</a> file for more info.</p>
