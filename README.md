@@ -92,7 +92,7 @@ const passageFlex = new PassageFlex('YOUR_PASSAGE_APP_ID');
 
 ### Go Passwordless
 
-Find all more details about Passkey Flex on our [Passkey Flex Documentation](https://docs.passage.id/flex) page.
+Find more details about Passkey Flex on our [Passkey Flex Documentation](https://docs.passage.id/flex) page.
 
 # API Reference
 
