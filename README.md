@@ -1,80 +1,114 @@
-![Passage Swift](https://storage.googleapis.com/passage-docs/passage-github-banner.png)
-# passage-flex-react-native
+![passage-flex-react-native](https://storage.googleapis.com/passage-docs/github-md-assets/passage-flex-react-native.png)
 
-[![npm version](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native.svg)](https://badge.fury.io/js/@passageidentity%2Fpassage-flex-react-native)
-
-Passkey Flex provides passkey support for existing authentication systems. It abstracts the complexities of native passkey APIs and provides a simple, clean solution to take your authentication to the next level.
-
-Use the `passage-flex-react-native` SDK in your React Native app to implement passkey registration, authentication, or additional step-up or multifactor authentication (MFA).
-
-For full documentation, including setting up a backend SDK, visit the [Passkey Flex documentation here](https://docs-v2.passage.id/flex).
+![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-react-native?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-react-native) [![React Native](https://img.shields.io/badge/React_Native-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) 	[![Expo](https://img.shields.io/badge/Expo-000020?logo=expo&logoColor=fff)](#) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-react-native) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-react-native)
+ ![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
 
-## Prerequisites
+## About
 
-### A Passkey Flex app
+[Passage by 1Password](https://1password.com/product/passage) unlocks the passwordless future with a simpler, more secure passkey authentication experience. Passage handles the complexities of the [WebAuthn API](https://blog.1password.com/what-is-webauthn/), and allows you to implement passkeys with ease. 
 
-1. Create a Passkey Flex app in the Passage Console at https://console.passage.id 
-2. Add an Android and/or iOS app in the Native Apps section
-3. When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown below:
-![Passage Native Apps screenshot](https://docs.passage.id/_next/image?url=%2Fimages%2Fv1-doc-images%2Fios-download-config-file.png&w=3840&q=75)
+Use [Passkey Flex](https://docs.passage.id/flex) to add passkeys to an existing authentication experience.
+
+Use [Passkey Complete](https://docs.passage.id/complete) as a standalone passwordless auth solution.
+
+Use [Passkey Ready](https://docs.passage.id/passkey-ready) to determine if your users are ready for passkeys.
 
 
-### Hosted associated domains files
 
-In order for passkeys to work, you’ll need to associate your native app(s) with the public web domain you assigned to your Passkey Flex app.
+### In passage-flex-react-native
 
-Android requires an `assetlinks.json` file configured and hosted (learn more [here](https://developer.android.com/identity/sign-in/credential-manager#add-support-dal)).
+Use passage-flex-react-native to implement Passkey Flex in your Swift application to add native passkey authentication in your own authentication flows.
 
-Apple requires an `apple-app-site-association` file configured and hosted (learn more [here](https://developer.apple.com/documentation/Xcode/supporting-associated-domains)).
 
-## Installation
+| Product | Compatible |
+| --- | --- |
+| ![Passkey Flex](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-flex-icon.png) Passkey **Flex** | ✅
+| ![Passkey Complete](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-complete-icon.png) Passkey **Complete** | ✖️ For Passkey Complete, check out [passage-react-native](https://github.com/passageidentity/passage-react-native)
+| ![Passkey Ready](https://storage.googleapis.com/passage-docs/github-md-assets/passage-passkey-ready-icon.png) Passkey **Ready** | ✖️ For Passkey Ready, check out [Authentikit for Android](https://github.com/passageidentity/passage-android/tree/main/authentikit) and [Authentikit for iOS](https://github.com/passageidentity/passage-authentikit-ios) |
 
-Install this package using npm:
+## Getting Started
 
-```
+### Check Prerequisites
+
+
+<p>
+You'll need a free Passage account and a Passkey Flex app set up in <a href="https://console.passage.id/">Passage Console</a> to get started.<br />
+<sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
+</p>
+
+<p>
+Add an Android and/or iOS app in the Native Apps section for your Passkey Flex app.
+</p>
+
+<p>
+<i>Note: When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown:</i> <br /><img width="600" src="https://docs.passage.id/_next/image?url=%2Fimages%2Fv1-doc-images%2Fios-download-config-file.png&w=3840&q=75" />
+</p>
+
+
+### Install
+```shell
 npm i --save @passageidentity/passage-flex-react-native
 ```
 
+### Configure
 
-## App configuration
+> [!IMPORTANT]
+> In order for passkeys to work, you’ll need to associate your native app(s) with the public web domain you assigned to your Passkey Flex app.
+> 
+> Android requires an `assetlinks.json` file configured and hosted <br /><sub>Learn more about <a href="https://developer.android.com/identity/sign-in/credential-manager#add-support-dal">Adding support for Digital Asset Links →</a></sub>
+>
+> Apple requires an `apple-app-site-association` file configured and hosted <br /><sub>Learn more about <a href="https://developer.apple.com/documentation/Xcode/supporting-associated-domains">Supporting associated domains →</a></sub>
 
-### Expo
 
-- Add plugin in app.json:
+<details>
+  <summary><b>Expo Configuration</b></summary>
+
+  <br />
+  
+  Add the `passage-flex-react-native` expo plugin in `app.json`:
+      
+```json
+"plugins": [
+      "@passageidentity/passage-flex-react-native"
+]
+```
     
-    ```json
-    "plugins": [
-          "@passageidentity/passage-flex-react-native"
-    ]
-    ```
-    
-- Add `ASSOCIATED_DOMAIN` value to your app's `.env` file:
-    
-    ```
-    ASSOCIATED_DOMAIN=example.com
-    ```
-    
-- Run `npx expo prebuild`
+  Add `ASSOCIATED_DOMAIN` value to your app's `.env` file:
+      
+```
+ASSOCIATED_DOMAIN=example.com
+```
+      
+Run the following:
+```
+npx expo prebuild
+```
 
-### Bare React Native
+</details>
 
-See our [Passkey Complete documentation](https://docs.passage.id/complete/cross-platform-passkey-configuration/cross-platform-ios-configuration) for setting up a React Native app for passkeys and Passage.
+<details>
+  <summary><b>Bare React Native Configuration</b></summary>
+  <br />
+  See our <a href="https://docs.passage.id/complete/cross-platform-passkey-configuration/cross-platform-ios-configuration">Passkey Complete documentation</a> for setting up a React Native app for passkeys and Passkey Flex.
+</details>
 
 
-## Usage
-
-Import PassageFlex:
-
+### Import
 ```tsx
 import { PassageFlex } from '@passageidentity/passage-flex-react-native';
 ```
 
-Initialize a Passage Flex instance using your `appId` found in [Passage Console](https://console.passage.id/):
-
+### Initialize
 ```tsx
-const passageFlex = new PassageFlex('YOUR_APP_ID');
+const passageFlex = new PassageFlex('YOUR_PASSAGE_APP_ID');
 ```
+
+### Go Passwordless
+
+Check out the [API Reference](#api-reference) below, along with more details about Passkey Flex on our [Passkey Flex Documentation](https://docs.passage.id/flex) page.
+
+# API Reference
 
 ### passageFlex.passkey.register
 
@@ -129,21 +163,23 @@ You can check if a user’s device supports passkeys by calling `passageFlex.pas
 const deviceSupportsPasskeys = passageFlex.passkey.isSupported();
 ```
 
+## Support & Feedback
 
-## Contributing
+We are here to help! Find additional docs, the best ways to get in touch with our team, and more within our [support resources](https://github.com/passageidentity/.github/blob/main/SUPPORT.md). 
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+<br />
 
 ---
-<br />
+
 <p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://storage.googleapis.com/passage-docs/logo-small-light.pngg" width="150">
-    <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/passage-docs/logo-small-dark.png" width="150">
-    <img alt="Passage Logo" src="https://storage.googleapis.com/passage-docs/logo-small-light.png" width="150">
-  </picture>
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+      <img alt="Passage by 1Password Logo" src="https://storage.googleapis.com/passage-docs/github-md-assets/passage-by-1password-light.png">
+    </picture>
 </p>
 
-<p align="center">Give customers the passwordless future they deserve. To learn more check out <a href="https://passage.1password.com">passage.1password.com</a></p>
-
-<p align="center">This project is licensed under the MIT license. See the <a href="./LICENSE"> LICENSE</a> file for more info.</p>
+<p align="center">
+    <sub>Passage is a product by <a href="https://1password.com/product/passage">1Password</a>, the global leader in access management solutions with nearly 150k business customers.</sub><br />
+    <sub>This project is licensed under the MIT license. See the <a href="LICENSE">LICENSE</a> file for more info.</sub>
+</p>
