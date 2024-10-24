@@ -1,6 +1,6 @@
 ![passage-flex-react-native](https://storage.googleapis.com/passage-docs/github-md-assets/passage-flex-react-native.png)
 
-![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-react-native?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-react-native) [![React Native](https://img.shields.io/badge/React_Native-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-react-native) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-react-native)
+![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-react-native?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-react-native) [![React Native](https://img.shields.io/badge/React_Native-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) 	[![Expo](https://img.shields.io/badge/Expo-000020?logo=expo&logoColor=fff)](#) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-react-native) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-react-native)
  ![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
 
@@ -31,53 +31,67 @@ Use passage-flex-react-native to implement Passkey Flex in your Swift applicatio
 
 ### Check Prerequisites
 
+
 <p>
- You'll need a free Passage account and a Passkey Flex app set up in <a href="https://console.passage.id/">Passage Console</a> to get started. <br />
- <sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
+You'll need a free Passage account and a Passkey Flex app set up in <a href="https://console.passage.id/">Passage Console</a> to get started.<br />
+<sub><a href="https://docs.passage.id/home#passage-console">Learn more about Passage Console →</a></sub>
 </p>
 
-Add an Android and/or iOS app in the Native Apps section.
+<p>
+Add an Android and/or iOS app in the Native Apps section for your Passkey Flex app.
+</p>
 
-When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown below:
-![Passage Native Apps screenshot](https://docs.passage.id/_next/image?url=%2Fimages%2Fv1-doc-images%2Fios-download-config-file.png&w=3840&q=75)
+<p>
+<i>Note: When you add your Native App info, you can generate the associated domain file for that app if you haven’t already created it yourself, as shown:</i> <br /><img width="600" src="https://docs.passage.id/_next/image?url=%2Fimages%2Fv1-doc-images%2Fios-download-config-file.png&w=3840&q=75" />
+</p>
+
 
 ### Install
 ```shell
 npm i --save @passageidentity/passage-flex-react-native
 ```
 
-#### Expo
+### Configure
 
-Add plugin in app.json:
-    
-  ```json
-    "plugins": [
-          "@passageidentity/passage-flex-react-native"
-    ]
-  ```
-    
-Add `ASSOCIATED_DOMAIN` value to your app's `.env` file:
-    
+> [!IMPORTANT]
+> In order for passkeys to work, you’ll need to associate your native app(s) with the public web domain you assigned to your Passkey Flex app.
+> 
+> Android requires an `assetlinks.json` file configured and hosted <br /><sub>Learn more about <a href="https://developer.android.com/identity/sign-in/credential-manager#add-support-dal">Adding support for Digital Asset Links →</a></sub>
+>
+> Apple requires an `apple-app-site-association` file configured and hosted <br /><sub>Learn more about <a href="https://developer.apple.com/documentation/Xcode/supporting-associated-domains">Supporting associated domains →</a></sub>
+
+
+<details>
+  <summary><b>Expo Configuration</b></summary>
+
+  <br />
+  
+  Add the `passage-flex-react-native` expo plugin in `app.json`:
+      
+```json
+"plugins": [
+      "@passageidentity/passage-flex-react-native"
+]
 ```
-  ASSOCIATED_DOMAIN=example.com
-```
     
+  Add `ASSOCIATED_DOMAIN` value to your app's `.env` file:
+      
+```
+ASSOCIATED_DOMAIN=example.com
+```
+      
 Run the following:
 ```
 npx expo prebuild
 ```
 
-#### Bare React Native
+</details>
 
-See our [Passkey Complete documentation](https://docs.passage.id/complete/cross-platform-passkey-configuration/cross-platform-ios-configuration) for setting up a React Native app for passkeys and Passage.
-
-#### Hosted associated domains files
-
-In order for passkeys to work, you’ll need to associate your native app(s) with the public web domain you assigned to your Passkey Flex app.
-
-Android requires an `assetlinks.json` file configured and hosted (learn more [here](https://developer.android.com/identity/sign-in/credential-manager#add-support-dal)).
-
-Apple requires an `apple-app-site-association` file configured and hosted (learn more [here](https://developer.apple.com/documentation/Xcode/supporting-associated-domains)).
+<details>
+  <summary><b>Bare React Native Configuration</b></summary>
+  <br />
+  See our <a href="https://docs.passage.id/complete/cross-platform-passkey-configuration/cross-platform-ios-configuration">Passkey Complete documentation</a> for setting up a React Native app for passkeys and Passkey Flex.
+</details>
 
 
 ### Import
@@ -92,7 +106,7 @@ const passageFlex = new PassageFlex('YOUR_PASSAGE_APP_ID');
 
 ### Go Passwordless
 
-Find more details about Passkey Flex on our [Passkey Flex Documentation](https://docs.passage.id/flex) page.
+Check out the [API Reference](#api-reference) below, along with more details about Passkey Flex on our [Passkey Flex Documentation](https://docs.passage.id/flex) page.
 
 # API Reference
 
