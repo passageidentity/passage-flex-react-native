@@ -1,6 +1,6 @@
 {
   "name": "@passageidentity/passage-flex-react-native",
-  "version": "1.0.0",  
+  "version": "1.0.1",
   "license": "MIT",
   "author": "Passage Identity, Inc <support@passage.id> (https://github.com/passageidentity)",
   "description": "Passkey Flex for React Native - Add native passkey authentication to your own React Native authentication flows with Passage by 1Password",
