@@ -3,6 +3,8 @@
 ![NPM Version](https://img.shields.io/npm/v/%40passageidentity%2Fpassage-flex-react-native?link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40passageidentity%2Fpassage-flex-react-native) [![React Native](https://img.shields.io/badge/React_Native-%2320232a.svg?logo=react&logoColor=%2361DAFB)](#) 	[![Expo](https://img.shields.io/badge/Expo-000020?logo=expo&logoColor=fff)](#) ![NPM Type Definitions](https://img.shields.io/npm/types/%40passageidentity%2Fpassage-flex-react-native) ![GitHub License](https://img.shields.io/github/license/passageidentity/passage-flex-react-native)
  ![Static Badge](https://img.shields.io/badge/Built_by_1Password-grey?logo=1password)
 
+# ⚠️ DEPRECATED
+**This repository is deprecated and no longer maintained as of January 16, 2026.**
 
 ## About
 
